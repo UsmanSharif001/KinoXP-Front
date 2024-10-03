@@ -4,7 +4,7 @@ console.log("er i moviestabel")
 
 const urlMovies= "http://localhost:8080/movies" //
 const tblMovies = document.getElementById("tblMovies") //
-const pbCreateMoviesTable= document.getElementById("pbGetKommuner") //
+const pbCreateMoviesTable= document.getElementById("pbGetMovies") //
 
 
 function insertRowInTable(movies) { //
