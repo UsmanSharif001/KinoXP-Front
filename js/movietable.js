@@ -27,7 +27,6 @@ function insertRowInTable(movies) { //
     pbBuyTicket.type = "button";
     pbBuyTicket.setAttribute("value", "Køb billet");
     pbBuyTicket.addEventListener('click', navigateToTicket)
-
     cell.appendChild(pbBuyTicket);
     console.log(row)
 
@@ -45,7 +44,7 @@ function actionGetMovies() {
 }
 
 function navigateToTicket() {
-    window.location = "buyChosenMovie"
+    window.location = "./buyChosenMovie.html"
 }
 
-pbCreateMoviesTable.addEventListener('load', actionGetMovies())
+pbCreateMoviesTable.addEventListener('click', actionGetMovies())
