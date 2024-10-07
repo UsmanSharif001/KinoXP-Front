@@ -45,7 +45,7 @@ function actionGetMovies() {
 }
 
 function navigateToTicket() {
-    window.location = "buyChosenMovie"
+    window.location = "./buyChosenMovie.html"
 }
 
 pbCreateMoviesTable.addEventListener('load', actionGetMovies())
