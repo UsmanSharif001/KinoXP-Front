@@ -6,7 +6,6 @@ const urlMovies = "http://localhost:8080/movies" //
 const tblMovies = document.getElementById("tblMovies") //
 const pbCreateMoviesTable = document.getElementById("pbGetMovies") //
 
-
 function insertRowInTable(movies) { //
     let cellCount = 0
     let rowCount = tblMovies.rows.length
@@ -43,8 +42,25 @@ function actionGetMovies() {
     fetchMovies()
 }
 
-function navigateToTicket() {
-    window.location = "./buyChosenMovie.html"
+function navigateToTicket(event) {
+    const row = event.target.closest('tr'); // Get the row that contains the clicked button
+    const movieId = row.id;  // Get the movie ID from the row
+    const selectedMovie = movies.find(m => m.movieID == movieId); // Find the movie in the movies array
+
+    if (selectedMovie) {
+        sessionStorage.setItem("movieTitle", selectedMovie.title);
+        window.location = "./buyChosenMovie.html";
+    }
 }
 
+/*
+function navigateToTicket() {
+    //var movieTitle = idTmp;
+    sessionStorage.setItem("movieTitle", movies.title)
+
+    window.location = "./buyChosenMovie.html"
+
+}*/
+
 pbCreateMoviesTable.addEventListener('click', actionGetMovies())
+
