@@ -30,3 +30,7 @@
     border-radius: 8px;
     height: 80px; /* Fixed height for consistent sizing */
 }
+
+.seat-map-row {
+    display: flex;
+}
