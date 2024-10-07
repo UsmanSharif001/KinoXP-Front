@@ -14,6 +14,7 @@ function insertRowInTable(movies) { //
     let cell = row.insertCell(cellCount++)
     let img = document.createElement('img')
     row.id = movies.movieID
+
     //Filmtitel
     cell.innerHTML = movies.title
     cell = row.insertCell(cellCount++)

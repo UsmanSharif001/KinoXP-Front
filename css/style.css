@@ -1,0 +1,32 @@
+.schedule {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    max-width: 800px;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* For example, 3 columns for 3 days */
+    grid-gap: 10px;
+    max-width: 800px;
+    margin-bottom: 20px; /* Add some space between the days and the sessions */
+}
+
+
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    max-width: 800px;
+}
+
+.session {
+    background-color: #27ae60;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    height: 80px; /* Fixed height for consistent sizing */
+}
