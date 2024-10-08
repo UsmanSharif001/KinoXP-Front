@@ -20,9 +20,12 @@ function renderSeatMap(rowCount, seatCount, reservedSeats) {
             ) // callback function er en funktion der returnerer en boolean, man giver til .some funktionen som man passerer til via lamda
 
             if (isReserved) {
-                seatElement.innerHTML ="🟥"
+                seatElement.innerHTML = "🟥"
             } else {
-                seatElement.innerHTML = "🟩"
+                seatElement.innerHTML = "🟩";
+                seatElement.addEventListener('click', (event) => {
+                    handleSeatSelection(event, _rowCount, _seatCount);
+                })
             }
             // add seat elements to row elements
             rowElement.appendChild(seatElement);
@@ -64,15 +67,30 @@ async function fetchData() {
         }
     );
     const reservedSeats = soldTickets.map((ticket, index) => {
-        return { rowNr: ticket.seat.rowNr, seatNr: ticket.seat.seatNr }
+        return {rowNr: ticket.seat.rowNr, seatNr: ticket.seat.seatNr}
     });
     // map looper et array igennem og for hvert array element returnere den noget, som bliver en del af et nyt array
 
     renderSeatMap(currentCinema.rowCount, currentCinema.seatCount, reservedSeats);
-
 }
 
 fetchData();
 
+// funktion til at vælge sæder
 
-// Get seats from Ticket ID's
+function handleSeatSelection(event, rowNumber, seatNumber) {
+    event.target.innerHTML = "🟦";
+    getSeatPrice(rowNumber, seatNumber)
+}
+
+async function getSeatPrice(rowNumber, seatNumber) {
+    const seatsResponse = await fetch("http://localhost:8080/seat")
+    const seatsJson = await seatsResponse.json();
+    const seatPrice = seatsJson.filter(
+        (seat) => {
+            return seat.cinema.cinemaId === cinemaID
+        }
+    ).find((seat) => seat.rowNr === rowNumber && seat.seatNr === seatNumber).price;
+
+    console.log(`Row: ${rowNumber} · Seat: ${seatNumber} · Price: ${seatPrice} kr.`)
+}
