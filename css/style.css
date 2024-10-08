@@ -1,29 +1,27 @@
-/* Style for the days (date) */
-.day {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.days-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-/* Style for the sessions (times) */
+.day-container {
+    border: 1px solid #ccc; /* Optional: Add a border around each day */
+    margin: 10px; /* Space between each day */
+    padding: 10px; /* Padding for each day container */
+    width: 150px; /* Width of each day container */
+    text-align: center; /* Center text */
+}
+
+.session-container {
+    display: flex;
+    flex-direction: column; /* Stack sessions vertically */
+    align-items: center; /* Center align sessions */
+}
+
 .session {
-    background-color: #28a745; /* Green background color */
-    color: white; /* White text color */
-    font-size: 16px;
-    padding: 10px;
-    margin: 5px 0; /* Adds some space between sessions */
-    border-radius: 8px;
-    text-align: center;
-}
-
-/* Container styling */
-#days {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start; /* Align the date and sessions to the left */
-}
-
-#sessions {
-    display: flex;
-    flex-direction: column; /* Stack sessions vertically under each day */
+    background-color: #4CAF50; /* Background color for session */
+    color: white; /* Text color */
+    margin: 5px 0; /* Space between session times */
+    padding: 5px; /* Padding for each session time */
+    width: 100%; /* Full width */
 }
