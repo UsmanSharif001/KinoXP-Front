@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Movie</title>
+</head>
+<body>
+<h1>Create a New Movie</h1>
+<form id="createMovieForm">
+    <table>
+        <tr>
+            <td><label for="title">Title:</label></td>
+            <td><input type="text" id="title" name="title" required></td>
+        </tr>
+        <tr>
+            <td><label for="description">Description:</label></td>
+            <td><textarea id="description" name="description" required></textarea></td>
+        </tr>
+        <tr>
+            <td><label for="hrefImage">Image URL:</label></td>
+            <td><input type="text" id="hrefImage" name="hrefImage" required></td>
+        </tr>
+        <tr>
+            <td><label for="runningTime">Running Time (minutes):</label></td>
+            <td><input type="number" id="runningTime" name="runningTime" required></td>
+        </tr>
+        <tr>
+            <td><label for="recommendedAge">Recommended Age:</label></td>
+            <td><input type="number" id="recommendedAge" name="recommendedAge" required></td>
+        </tr>
+        <tr>
+            <td><label for="is3D">Is 3D?</label></td>
+            <td><input type="checkbox" id="is3D" name="is3D"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Create Movie</button></td>
+        </tr>
+    </table>
+</form>
+<script src="../js/createmovie.js" defer></script>
+</body>
+</html>

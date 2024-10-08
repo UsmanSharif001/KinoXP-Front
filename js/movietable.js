@@ -54,14 +54,5 @@ function navigateToTicket(event) {
     }
 }
 
-/*
-function navigateToTicket() {
-    //var movieTitle = idTmp;
-    sessionStorage.setItem("movieTitle", movies.title)
-
-    window.location = "./buyChosenMovie.html"
-
-}*/
-
 pbCreateMoviesTable.addEventListener('click', actionGetMovies())
 
