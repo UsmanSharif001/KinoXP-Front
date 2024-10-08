@@ -4,7 +4,7 @@ const seatMapContainer = document.getElementById("seat-map");
 
 // Based on row no. and seat no. render static seat map grid inside seat-map element
 
-function renderSeatMap(rowCount, seatCount) {
+function renderSeatMap(rowCount, seatCount, reservedSeats) {
     for (let _rowCount = 1; _rowCount <= rowCount; _rowCount++) {
         // create row element
         const rowElement = document.createElement("div");
@@ -14,7 +14,16 @@ function renderSeatMap(rowCount, seatCount) {
             // create seat elements
             const seatElement = document.createElement("div");
             seatElement.classList.add("seat-map-seat");
-            seatElement.innerHTML = "🟩"
+
+            const isReserved = reservedSeats.some(
+                (seat) => seat.rowNr === _rowCount && seat.seatNr === _seatCount
+            ) // callback function er en funktion der returnerer en boolean, man giver til .some funktionen som man passerer til via lamda
+
+            if (isReserved) {
+                seatElement.innerHTML ="🟥"
+            } else {
+                seatElement.innerHTML = "🟩"
+            }
             // add seat elements to row elements
             rowElement.appendChild(seatElement);
         }
@@ -31,7 +40,7 @@ const urlScreening = `http://localhost:8080/selectedscreening/screeningID=${scre
 
 let cinemaID = null;
 
-async function fetchScreening() {
+async function fetchData() {
     if (!screeningID) {
         throw Error("Url parameter 'screeningID' is missing");
     }
@@ -46,14 +55,24 @@ async function fetchScreening() {
         (cinema) => cinema.cinemaId === cinemaID // (cinema) er hvert element i cinemaJson Array'et. Boolean statement som tjekker om elementerne er strictly equal cinemaID
     )[0]; // cinemaJson.filter returnerer et array med 1 element, så det er nødvendigt at hive elementet ud af array'et
 
-    renderSeatMap(currentCinema.rowCount, currentCinema.seatCount);
+    // Get tickets from screening ID
+    const ticketsResponse = await fetch("http://localhost:8080/ticket")
+    const ticketJson = await ticketsResponse.json();
+    const soldTickets = ticketJson.filter(
+        (ticket) => {
+            return ticket.screening.screeningID === parseInt(screeningID)
+        }
+    );
+    const reservedSeats = soldTickets.map((ticket, index) => {
+        return { rowNr: ticket.seat.rowNr, seatNr: ticket.seat.seatNr }
+    });
+    // map looper et array igennem og for hvert array element returnere den noget, som bliver en del af et nyt array
+
+    renderSeatMap(currentCinema.rowCount, currentCinema.seatCount, reservedSeats);
+
 }
 
-fetchScreening();
+fetchData();
 
 
-// Hvordan gør man det?
-
-
-// Get tickets from cinema ID
 // Get seats from Ticket ID's
