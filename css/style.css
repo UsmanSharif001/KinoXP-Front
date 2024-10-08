@@ -1,32 +1,29 @@
-.schedule {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    max-width: 800px;
-}
-
-.days-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* For example, 3 columns for 3 days */
-    grid-gap: 10px;
-    max-width: 800px;
-    margin-bottom: 20px; /* Add some space between the days and the sessions */
-}
-
-
-.sessions-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    max-width: 800px;
-}
-
-.session {
-    background-color: #27ae60;
-    color: white;
-    text-align: center;
-    padding: 15px;
+/* Style for the days (date) */
+.day {
+    font-size: 18px;
     font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Style for the sessions (times) */
+.session {
+    background-color: #28a745; /* Green background color */
+    color: white; /* White text color */
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 0; /* Adds some space between sessions */
     border-radius: 8px;
-    height: 80px; /* Fixed height for consistent sizing */
+    text-align: center;
+}
+
+/* Container styling */
+#days {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align the date and sessions to the left */
+}
+
+#sessions {
+    display: flex;
+    flex-direction: column; /* Stack sessions vertically under each day */
 }
