@@ -25,3 +25,7 @@
     padding: 5px; /* Padding for each session time */
     width: 100%; /* Full width */
 }
+
+.seat-map-row {
+    display: flex;
+}
