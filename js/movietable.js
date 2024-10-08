@@ -49,7 +49,7 @@ function navigateToTicket(event) {
     const selectedMovie = movies.find(m => m.movieID == movieId); // Find the movie in the movies array
 
     if (selectedMovie) {
-        sessionStorage.setItem("movieTitle", selectedMovie.title);
+        sessionStorage.setItem("movieID", selectedMovie.movieID);
         window.location = "./buyChosenMovie.html";
     }
 }
