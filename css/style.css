@@ -1,34 +1,29 @@
-.schedule {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    max-width: 800px;
-}
-
 .days-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* For example, 3 columns for 3 days */
-    grid-gap: 10px;
-    max-width: 800px;
-    margin-bottom: 20px; /* Add some space between the days and the sessions */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
+.day-container {
+    border: 1px solid #ccc; /* Optional: Add a border around each day */
+    margin: 10px; /* Space between each day */
+    padding: 10px; /* Padding for each day container */
+    width: 150px; /* Width of each day container */
+    text-align: center; /* Center text */
+}
 
-.sessions-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    max-width: 800px;
+.session-container {
+    display: flex;
+    flex-direction: column; /* Stack sessions vertically */
+    align-items: center; /* Center align sessions */
 }
 
 .session {
-    background-color: #27ae60;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-weight: bold;
-    border-radius: 8px;
-    height: 80px; /* Fixed height for consistent sizing */
+    background-color: #4CAF50; /* Background color for session */
+    color: white; /* Text color */
+    margin: 5px 0; /* Space between session times */
+    padding: 5px; /* Padding for each session time */
+    width: 100%; /* Full width */
 }
 
 .seat-map-row {
