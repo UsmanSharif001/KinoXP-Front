@@ -2,7 +2,9 @@ import {fetchAnyUrl, restDelete} from "./modulejson.js";
 
 console.log("Jeg er i ticket.js")
 
+const tempTicketId = 1;
 const urlTicket = "http://localhost:8080/ticket"
+const urlFindTicketById = `http://localhost:8080/seat/${tempTicketId}/ticket`
 const tblTicket = document.getElementById("tblTicket")
 const pbGetTicket = document.getElementById("pbGetTicket")
 
@@ -36,7 +38,7 @@ function ticketTable(tickets){
 let tickets = []
 
 async function fetchTickets() {
-    tickets = await fetchAnyUrl(urlTicket)
+    tickets = await fetchAnyUrl(urlFindTicketById)
     tickets.forEach(ticketTable)
 }
 
