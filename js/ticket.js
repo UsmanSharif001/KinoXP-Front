@@ -13,13 +13,19 @@ function ticketTable(tickets){
     row.id = tickets.ticketId
 
     let cell = row.insertCell(cellCount++)
-    cell.innerHTML = `Dato: ${tickets.screening.date} Tid ${tickets.screening.timeOfDay}`
+    cell.innerHTML = `Film: ${tickets.screening.movie.title}`
+
+    cell = row.insertCell(cellCount++)
+    cell.innerHTML = `Dato: ${tickets.screening.date} Tid: ${tickets.screening.timeOfDay}`
+
+    cell = row.insertCell(cellCount++)
+    cell.innerHTML = `Sal: ${tickets.screening.cinema.name}`
 
     cell = row.insertCell(cellCount++)
     cell.innerHTML = `Row: ${tickets.seat.rowNr} Seat: ${tickets.seat.seatNr}`
 
     cell = row.insertCell(cellCount++)
-    cell.innerHTML = `Costumer ${tickets.costumerName}`
+    cell.innerHTML = `Costumer ${tickets.customerName}`
 
     cell = row.insertCell(cellCount++)
     cell.innerHTML = `Price: ${tickets.seat.price}`
