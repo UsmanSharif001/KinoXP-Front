@@ -1,30 +1,4 @@
-.days-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
 
-.day-container {
-    border: 1px solid #ccc; /* Optional: Add a border around each day */
-    margin: 10px; /* Space between each day */
-    padding: 10px; /* Padding for each day container */
-    width: 150px; /* Width of each day container */
-    text-align: center; /* Center text */
-}
-
-.session-container {
-    display: flex;
-    flex-direction: column; /* Stack sessions vertically */
-    align-items: center; /* Center align sessions */
-}
-
-.session {
-    background-color: #4CAF50; /* Background color for session */
-    color: white; /* Text color */
-    margin: 5px 0; /* Space between session times */
-    padding: 5px; /* Padding for each session time */
-    width: 100%; /* Full width */
-}
 
 .seat-map-row {
     display: flex;

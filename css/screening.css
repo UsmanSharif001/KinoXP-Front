@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.schedule {
+    display: flex; /* Use flexbox for main layout */
+    gap: 20px; /* Space between days and movie details */
+}
+
+.days-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.day-container {
+    border: 1px solid #ccc; /* Optional: Add a border around each day */
+    margin: 10px; /* Space between each day */
+    padding: 10px; /* Padding for each day container */
+    width: 150px; /* Width of each day container */
+    text-align: center; /* Center text */
+}
+
+.session-container {
+    display: flex;
+    flex-direction: column; /* Stack sessions vertically */
+    align-items: center; /* Center align sessions */
+}
+
+.session {
+    background-color: #4CAF50; /* Background color for session */
+    color: white; /* Text color */
+    margin: 5px 0; /* Space between session times */
+    padding: 5px; /* Padding for each session time */
+    width: 100%; /* Full width */
+}
+
+.movie-details {
+    display: flex; /* Use flexbox for movie details */
+    flex-direction: column; /* Stack children vertically */
+    background-color: #fff; /* White background for movie details */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding inside the movie details */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 300px; /* Fixed width for movie details */
+}
+
+.movie-details img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for the image */
+}
+
+h2 {
+    margin: 0; /* Remove default margin */
+}
+
+p {
+    margin: 5px 0; /* Space between paragraphs */
+}

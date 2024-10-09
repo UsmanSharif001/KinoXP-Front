@@ -5,12 +5,34 @@ console.log("Jeg er i screenings")
 const movieID = sessionStorage.getItem("movieID")
 const urlScreenings = `http://localhost:8080/movies/${movieID}/screenings`
 const daysDiv = document.getElementById("days")
-const sessionsDiv = document.getElementById("sessions")
+const moviesDiv = document.getElementById("movies")
 let screenings = []
 
 console.log(movieID)
 
-function insertDayAndTime(screeningDate) {
+function insertMovieDetails(movie){
+
+    moviesDiv.innerHTML = ``
+
+    const titleElement = document.createElement("h2")
+    titleElement.textContent = movie.title
+
+    const descriptionElement = document.createElement("p")
+    descriptionElement.textContent = movie.description
+
+    const runningTimeElement = document.createElement("p")
+    runningTimeElement.textContent = `Spilletid: ${movie.runningTime}`
+
+    const imageElement = document.createElement("img")
+    imageElement.src = movie.hrefImage
+
+    moviesDiv.appendChild(titleElement)
+    moviesDiv.appendChild(descriptionElement)
+    moviesDiv.appendChild(runningTimeElement)
+    moviesDiv.appendChild(imageElement)
+}
+
+function insertDayAndTime(screeningDate,screeningsForDays) {
     const dayContainer = document.createElement("div");
     dayContainer.classList.add('day-container'); // New container for day and times
 
@@ -23,7 +45,6 @@ function insertDayAndTime(screeningDate) {
     sessionContainer.classList.add('session-container');
 
     // Insert times for the current day
-    const screeningsForDays = screenings.filter(screening => screening.date == screeningDate);
     screeningsForDays.forEach(screening => {
         const sessionElement = document.createElement("div");
         sessionElement.classList.add('session');
@@ -63,12 +84,16 @@ async function fetchScreenings() {
 
         screenings = sortScreenings(screenings)
 
+
         console.log("Fetched screenings:", screenings); // Log the fetched screenings
 
         // Clear existing content
         daysDiv.innerHTML = '';
-        sessionsDiv.innerHTML = '';
 
+        if(screenings.length > 0){
+            const movie = screenings[0].movie
+            insertMovieDetails(movie)
+        }
 
         // Collect unique days from screenings
         const uniqueDays = [...new Set(screenings.map(screening => screening.date))];
