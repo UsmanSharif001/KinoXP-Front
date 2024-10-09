@@ -61,3 +61,11 @@ h2 {
 p {
     margin: 5px 0; /* Space between paragraphs */
 }
+
+.highlight {
+    font-weight: bold; /* Makes the text bold */
+
+    /* You can add other styles if needed */
+}
+
+

@@ -8,10 +8,10 @@ const daysDiv = document.getElementById("days")
 const moviesDiv = document.getElementById("movies")
 let screenings = []
 
-console.log(movieID)
+console.log("Se hvilket movie id",movieID)
 
 function insertMovieDetails(movie){
-
+    console.log("Her er movie objektet: ", movie)
     moviesDiv.innerHTML = ``
 
     const titleElement = document.createElement("h2")
@@ -21,7 +21,8 @@ function insertMovieDetails(movie){
     descriptionElement.textContent = movie.description
 
     const runningTimeElement = document.createElement("p")
-    runningTimeElement.textContent = `Spilletid: ${movie.runningTime}`
+    runningTimeElement.textContent = `Spilletid: ${movie.runningTime} Minutter`
+    runningTimeElement.classList.add("highlight")
 
     const imageElement = document.createElement("img")
     imageElement.src = movie.hrefImage
@@ -33,12 +34,15 @@ function insertMovieDetails(movie){
 }
 
 function insertDayAndTime(screeningDate,screeningsForDays) {
+    console.log("Dato indsættes her: ", screeningDate)
+
     const dayContainer = document.createElement("div");
     dayContainer.classList.add('day-container'); // New container for day and times
 
     const dayElement = document.createElement("div");
     dayElement.classList.add('day');
     dayElement.textContent = screeningDate;
+    dayElement.classList.add("highlight");
 
     // Create a div to hold all the sessions for this day
     const sessionContainer = document.createElement("div");
@@ -80,12 +84,12 @@ function sortScreenings(screenings) {
 
 async function fetchScreenings() {
     try {
+        console.log("Url der bliver fetched: ", urlScreenings)
         screenings = await fetchAnyUrl(urlScreenings);
 
         screenings = sortScreenings(screenings)
+        console.log("Den sorterede liste af screenings ", screenings)
 
-
-        console.log("Fetched screenings:", screenings); // Log the fetched screenings
 
         // Clear existing content
         daysDiv.innerHTML = '';
@@ -97,6 +101,8 @@ async function fetchScreenings() {
 
         // Collect unique days from screenings
         const uniqueDays = [...new Set(screenings.map(screening => screening.date))];
+
+        console.log("Unikke screening dage", uniqueDays);
 
         // Insert unique days into the days grid
         uniqueDays.forEach(day => {
