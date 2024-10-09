@@ -5,27 +5,52 @@ console.log("Jeg er i screenings")
 const movieID = sessionStorage.getItem("movieID")
 const urlScreenings = `http://localhost:8080/movies/${movieID}/screenings`
 const daysDiv = document.getElementById("days")
-const sessionsDiv = document.getElementById("sessions")
+const moviesDiv = document.getElementById("movies")
 let screenings = []
 
-console.log(movieID)
+console.log("Se hvilket movie id",movieID)
 
-function insertDayAndTime(screeningDate) {
+function insertMovieDetails(movie){
+    console.log("Her er movie objektet: ", movie)
+    moviesDiv.innerHTML = ``
+
+    const titleElement = document.createElement("h2")
+    titleElement.textContent = movie.title
+
+    const descriptionElement = document.createElement("p")
+    descriptionElement.textContent = movie.description
+
+    const runningTimeElement = document.createElement("p")
+    runningTimeElement.textContent = `Spilletid: ${movie.runningTime} Minutter`
+    runningTimeElement.classList.add("highlight")
+
+    const imageElement = document.createElement("img")
+    imageElement.src = movie.hrefImage
+
+    moviesDiv.appendChild(titleElement)
+    moviesDiv.appendChild(descriptionElement)
+    moviesDiv.appendChild(runningTimeElement)
+    moviesDiv.appendChild(imageElement)
+}
+
+function insertDayAndTime(screeningDate,screeningsForDays) {
+    console.log("Dato indsættes her: ", screeningDate)
+
     const dayContainer = document.createElement("div");
     dayContainer.classList.add('day-container'); // New container for day and times
 
     const dayElement = document.createElement("div");
     dayElement.classList.add('day');
     dayElement.textContent = screeningDate;
+    dayElement.classList.add("highlight");
 
     // Create a div to hold all the sessions for this day
     const sessionContainer = document.createElement("div");
     sessionContainer.classList.add('session-container');
 
     // Insert times for the current day
-    const screeningsForDays = screenings.filter(screening => screening.date == screeningDate);
     screeningsForDays.forEach(screening => {
-        const sessionElement = document.createElement("div");
+        const sessionElement = document.createElement("button");
         sessionElement.classList.add('session');
         sessionElement.innerHTML = screening.timeOfDay;
         sessionContainer.appendChild(sessionElement); // Add session to session container
@@ -59,19 +84,25 @@ function sortScreenings(screenings) {
 
 async function fetchScreenings() {
     try {
+        console.log("Url der bliver fetched: ", urlScreenings)
         screenings = await fetchAnyUrl(urlScreenings);
 
         screenings = sortScreenings(screenings)
+        console.log("Den sorterede liste af screenings ", screenings)
 
-        console.log("Fetched screenings:", screenings); // Log the fetched screenings
 
         // Clear existing content
         daysDiv.innerHTML = '';
-        sessionsDiv.innerHTML = '';
 
+        if(screenings.length > 0){
+            const movie = screenings[0].movie
+            insertMovieDetails(movie)
+        }
 
         // Collect unique days from screenings
         const uniqueDays = [...new Set(screenings.map(screening => screening.date))];
+
+        console.log("Unikke screening dage", uniqueDays);
 
         // Insert unique days into the days grid
         uniqueDays.forEach(day => {

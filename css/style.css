@@ -1,17 +1,3 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #111; /* Dark background to mimic a theater */
-    color: #fff; /* White text for contrast */
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-}
-
 .div1 {
      width: 80%;
      margin: auto;
@@ -56,13 +42,6 @@ td {
 /* Add alternating row colors */
 .table tr:nth-child(even) {
     background-color: #f3f3f3;
-}
-
-/* Hover effect for rows */
-td {
-    background-color: #222;
-    padding: 10px 15px;
-    border-bottom: 1px solid #333;
 }
 
 /* Hover effect for table rows */
