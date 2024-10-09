@@ -14,7 +14,7 @@ async function postObjectAsJson(url, object, httpVerbum) {
 }
 
 function fetchAnyUrl(url) {
-    return fetch(url).then(response =>response.json())
+    return fetch(url).then(response => response.json())
 }
 
 async function restDelete(url) {
