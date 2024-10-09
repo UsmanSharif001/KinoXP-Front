@@ -50,7 +50,7 @@ function insertDayAndTime(screeningDate,screeningsForDays) {
 
     // Insert times for the current day
     screeningsForDays.forEach(screening => {
-        const sessionElement = document.createElement("div");
+        const sessionElement = document.createElement("button");
         sessionElement.classList.add('session');
         sessionElement.innerHTML = screening.timeOfDay;
         sessionContainer.appendChild(sessionElement); // Add session to session container
