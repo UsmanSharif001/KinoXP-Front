@@ -19,11 +19,10 @@ function ticketTable(tickets){
     cell.innerHTML = `Row: ${tickets.seat.rowNr} Seat: ${tickets.seat.seatNr}`
 
     cell = row.insertCell(cellCount++)
-    cell.innerHTML = `Costumer ${tickets.costumerName}`
+    cell.innerHTML = `Customer ${tickets.customerName}`
 
     cell = row.insertCell(cellCount++)
     cell.innerHTML = `Price: ${tickets.seat.price}`
-
 }
 
 
