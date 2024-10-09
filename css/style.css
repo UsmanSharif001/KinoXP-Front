@@ -1,3 +1,64 @@
+.div1 {
+    max-width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow to container */
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Add alternating row colors */
+.table tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+/* Hover effect for rows */
+.table tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+/* Styling the table header */
+.table th {
+    background-color: #4CAF50; /* Green header */
+    color: white;
+    text-transform: uppercase;
+}
+
+.days-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.day-container {
+    border: 1px solid #ccc; /* Optional: Add a border around each day */
+    margin: 10px; /* Space between each day */
+    padding: 10px; /* Padding for each day container */
+    width: 150px; /* Width of each day container */
+    text-align: center; /* Center text */
+}
 
 
 .seat-map-row {
