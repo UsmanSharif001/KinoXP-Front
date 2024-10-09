@@ -1,3 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* Dark background for cinematic feel */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
 .div1 {
      width: 80%;
      margin: auto;
@@ -49,6 +62,7 @@ td:hover {
     background-color: #444;
     color: #fff;
 }
+
 #newMovie {
     font-size: 1.5em;
     margin-bottom: 20px;
@@ -115,7 +129,6 @@ button:hover {
 }
 
 .day-container:hover {
-    background-color: #004d00; /* Dark green on hover */
     transform: scale(1.05); /* Slight grow effect */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Deeper shadow on hover */
 }
@@ -140,8 +153,17 @@ button:hover {
 
 /* Hover effect for sessions */
 .session:hover {
+    background-color: #388E3C;
     transform: scale(1.02); /* Slight hover grow effect */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+}
+
+.schedule {
+    width: 80%;
+    background-color: #222; /* Slightly lighter than the body for contrast */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Cinematic shadow */
 }
 
 .seat-map-row {

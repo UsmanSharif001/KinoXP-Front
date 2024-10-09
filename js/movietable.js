@@ -56,5 +56,5 @@ function navigateToTicket(event) {
     }
 }
 
-pbCreateMoviesTable.addEventListener('click', actionGetMovies())
-
+//pbCreateMoviesTable.addEventListener('click', actionGetMovies)
+window.addEventListener('load', actionGetMovies)
