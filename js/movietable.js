@@ -9,6 +9,7 @@ function insertRowInTable(movies) {
     // Create a div that will act as the movie card (flex structure)
     let movieCard = document.createElement('div');
     movieCard.classList.add('movie-card'); // Apply a CSS class for styling
+    movieCard.setAttribute('data-movie-id', movies.movieID);
 
     // Create and add the movie poster (image)
     let img = document.createElement("img");
@@ -48,8 +49,8 @@ function actionGetMovies() {
 }
 
 function navigateToTicket(event) {
-    const row = event.target.closest('movie-card'); // Get the row that contains the clicked button
-    const movieId = row.id;  // Get the movie ID from the row
+    const card = event.target.closest('.movie-card'); // Get the movie card div
+    const movieId = card.getAttribute('data-movie-id');
     const selectedMovie = movies.find(m => m.movieID == movieId); // Find the movie in the movies array
 
     if (selectedMovie) {
