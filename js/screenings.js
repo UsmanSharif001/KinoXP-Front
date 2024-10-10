@@ -41,7 +41,7 @@ function insertDayAndTime(screeningDate,screeningsForDays) {
 
     const dayElement = document.createElement("div");
     dayElement.classList.add('day');
-    dayElement.textContent = screeningDate;
+    dayElement.textContent = formatDate(screeningDate)
     dayElement.classList.add("highlight");
 
     // Create a div to hold all the sessions for this day
@@ -54,7 +54,7 @@ function insertDayAndTime(screeningDate,screeningsForDays) {
 
         const sessionElement = document.createElement("button");
         sessionElement.classList.add('session');
-        sessionElement.innerHTML = screening.timeOfDay;
+        sessionElement.innerHTML = formatTime(screening.timeOfDay);
 
         console.log("Setting screening ID on button: ", screening.screeningID);
 
@@ -68,6 +68,20 @@ function insertDayAndTime(screeningDate,screeningsForDays) {
     dayContainer.appendChild(dayElement); // Add day to container
     dayContainer.appendChild(sessionContainer); // Add session container to main container
     daysDiv.appendChild(dayContainer); // Add day-container to the main daysDiv
+}
+
+function formatDate(dateString) {
+    // Split the date string (assuming it's in YYYY-MM-DD format)
+    const [year, month, day] = dateString.split("-");
+    // Return formatted date in DD/MM/YYYY
+    return `${day}/${month}/${year}`;
+}
+
+function formatTime(timeString) {
+    // Split the time string (assuming it's in HH:MM:SS format)
+    const [hours, minutes] = timeString.split(":");
+    // Return formatted time in HH:MM (24-hour format)
+    return `${hours}:${minutes}`;
 }
 
 function sortScreenings(screenings) {
