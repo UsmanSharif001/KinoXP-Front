@@ -1,5 +1,8 @@
 // Select seat map element
 
+//Her bliver screening id hentet ud fra screenings
+//const screeningID = sessionStorage.getItem("screeningID")
+
 const seatMapContainer = document.getElementById("seat-map");
 
 // Based on row no. and seat no. render static seat map grid inside seat-map element
@@ -36,6 +39,7 @@ function renderSeatMap(rowCount, seatCount, reservedSeats) {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
+
 const screeningID = urlParams.get('screeningID');
 
 // Get screening:

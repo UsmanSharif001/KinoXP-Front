@@ -8,10 +8,11 @@ const daysDiv = document.getElementById("days")
 const moviesDiv = document.getElementById("movies")
 let screenings = []
 
-console.log("Se hvilket movie id",movieID)
+console.log("Se hvilket movie id", movieID)
 
-function insertMovieDetails(movie){
+function insertMovieDetails(movie) {
     console.log("Her er movie objektet: ", movie)
+
     moviesDiv.innerHTML = ``
 
     const titleElement = document.createElement("h2")
@@ -21,7 +22,9 @@ function insertMovieDetails(movie){
     descriptionElement.textContent = movie.description
 
     const runningTimeElement = document.createElement("p")
-    runningTimeElement.textContent = `Spilletid: ${movie.runningTime} Minutter`
+
+
+    runningTimeElement.textContent = 'Spilletid: ' + movie.runningTime + ' Minutter'
     runningTimeElement.classList.add("highlight")
 
     const imageElement = document.createElement("img")
@@ -33,34 +36,60 @@ function insertMovieDetails(movie){
     moviesDiv.appendChild(imageElement)
 }
 
-function insertDayAndTime(screeningDate,screeningsForDays) {
-    console.log("Dato indsættes her: ", screeningDate)
+function insertDayAndTime(screeningDate, screeningsForDays) {
 
     const dayContainer = document.createElement("div");
-    dayContainer.classList.add('day-container'); // New container for day and times
+    //Tilføjer en klasse til div tagget, for nemmere at kunne style
+    dayContainer.classList.add('day-container');
 
     const dayElement = document.createElement("div");
     dayElement.classList.add('day');
-    dayElement.textContent = screeningDate;
+    dayElement.textContent = formatDate(screeningDate)
     dayElement.classList.add("highlight");
 
-    // Create a div to hold all the sessions for this day
+
     const sessionContainer = document.createElement("div");
     sessionContainer.classList.add('session-container');
 
-    // Insert times for the current day
+
     screeningsForDays.forEach(screening => {
+        console.log("screening object:", screening);
+
         const sessionElement = document.createElement("button");
         sessionElement.classList.add('session');
-        sessionElement.innerHTML = screening.timeOfDay;
-        sessionContainer.appendChild(sessionElement); // Add session to session container
+        sessionElement.innerHTML = formatTime(screening.timeOfDay);
+
+        console.log("Setting screening ID on button: ", screening.screeningID);
+
+        //Sætter screening id på knappen.
+        sessionElement.setAttribute('data-screening-id', screening.screeningID);
+
+        sessionElement.addEventListener('click', navigateToSeatMap)
+
+        sessionContainer.appendChild(sessionElement);
     });
 
-    dayContainer.appendChild(dayElement); // Add day to container
-    dayContainer.appendChild(sessionContainer); // Add session container to main container
-    daysDiv.appendChild(dayContainer); // Add day-container to the main daysDiv
+    dayContainer.appendChild(dayElement);
+    dayContainer.appendChild(sessionContainer);
+    daysDiv.appendChild(dayContainer);
 }
 
+function formatDate(dateString) {
+    //Splitter datoen
+    const [year, month, day] = dateString.split("-");
+    // retunere på den danske måde
+    return `${day}/${month}/${year}`;
+}
+
+function formatTime(timeString) {
+    // Splitter tiden
+    const [hours, minutes] = timeString.split(":");
+    // returnere uden sekunder
+    return `${hours}:${minutes}`;
+}
+
+
+//Erik bruger også den her funktion i Regioner/Kommuner
 function sortScreenings(screenings) {
     return screenings.sort((a, b) => {
         // First, compare by date
@@ -94,20 +123,27 @@ async function fetchScreenings() {
         // Clear existing content
         daysDiv.innerHTML = '';
 
-        if(screenings.length > 0){
+        //Hvis der er flere screenings på en film, skal den kun vise filmen en gang
+        if (screenings.length > 0) {
             const movie = screenings[0].movie
             insertMovieDetails(movie)
         }
 
-        // Collect unique days from screenings
+        //Starter med at lave et array af alle screening dage
+        //Laver et set, der filtrere dublicates ud
+        //Laver settet tilbage til et array
         const uniqueDays = [...new Set(screenings.map(screening => screening.date))];
 
         console.log("Unikke screening dage", uniqueDays);
 
-        // Insert unique days into the days grid
+        // Looper over unik dag, gemt i "uniqueDays" arryet
+        //  Filtrere så man får alle screenings tilknyttet den nuværende dag i loopet
+        // Kontrollere om datoen på hvert screening objekt er ens med den nuværende dag
+        //Hvis det er det, kommer det med i screeningDays arrayet.
+        //Kalder funktionen i insertDayandTime
         uniqueDays.forEach(day => {
             const screeningDays = screenings.filter(screening => screening.date === day)
-            insertDayAndTime(day,screeningDays)
+            insertDayAndTime(day, screeningDays)
         })
 
     } catch (error) {
@@ -117,6 +153,33 @@ async function fetchScreenings() {
 
 function actionGetScreenings() {
     fetchScreenings()
+}
+
+
+
+function navigateToSeatMap(event) {
+    //Få fat i knappen
+    const button = event.target
+
+    //Får fat i screening id'et fra knappen
+    //Det bliver knyttet længere oppe i koden
+    const screeningID = button.getAttribute("data-screening-id")
+
+    console.log("Får jeg et id i navigate to seatmap?" + screeningID)
+
+    //Find screening objektet i scrennings arrayet
+    //Søg efter en screening med det samme id, som det der er tilknyttet knappen
+    const selectedScreening = screenings.find(s => s.screeningID == screeningID)
+
+    //Tjek om det er fundet
+    if (selectedScreening) {
+
+        //Gem idet i en session storage, som key - value
+        sessionStorage.setItem("screeningID", selectedScreening.id);
+
+        //redirect til den næste html
+        window.location = "./seatmap.html";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", actionGetScreenings)
