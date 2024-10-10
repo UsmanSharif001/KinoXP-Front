@@ -24,13 +24,13 @@ function ticketTable(tickets){
     cell.innerHTML = `Sal: ${tickets.screening.cinema.name}`
 
     cell = row.insertCell(cellCount++)
-    cell.innerHTML = `Row: ${tickets.seat.rowNr} Seat: ${tickets.seat.seatNr}`
+    cell.innerHTML = `Række: ${tickets.seat.rowNr} Sæde: ${tickets.seat.seatNr}`
 
     cell = row.insertCell(cellCount++)
-    cell.innerHTML = `Costumer ${tickets.customerName}`
+    cell.innerHTML = `Gæst: ${tickets.customerName}`
 
     cell = row.insertCell(cellCount++)
-    cell.innerHTML = `Price: ${tickets.seat.price}`
+    cell.innerHTML = `Pris: ${tickets.seat.price}`
 
 }
 
@@ -38,7 +38,7 @@ function ticketTable(tickets){
 let tickets = []
 
 async function fetchTickets() {
-    tickets = await fetchAnyUrl(urlFindTicketById)
+    tickets = await fetchAnyUrl(urlTicket)
     tickets.forEach(ticketTable)
 }
 
@@ -46,4 +46,5 @@ function actionGetTickets() {
     fetchTickets()
 }
 
-pbGetTicket.addEventListener('click', actionGetTickets)
+document.addEventListener("DOMContentLoaded", actionGetTickets)
+//pbGetTicket.addEventListener('click', actionGetTickets)
