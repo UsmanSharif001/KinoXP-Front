@@ -34,9 +34,17 @@
             <td><input type="checkbox" id="is3D" name="is3D"></td>
         </tr>
         <tr>
+            <td><label for="screenings">Select Screenings:</label></td>
+            <td>
+                <select id="screenings" name="screenings" multiple required>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2"><button type="submit">Create Movie</button></td>
         </tr>
     </table>
+    <button onclick="window.location.href='adminshowmovie.html';">Back to Movie List</button>
 </form>
 <script src="../js/createmovie.js" defer></script>
 </body>
