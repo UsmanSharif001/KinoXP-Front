@@ -181,6 +181,11 @@ button:hover {
     border-radius: 5px; /* Rounded corners for the image */
 }
 
+/* Seat map style */
+.seat-map-row {
+    display: flex;
+}
+
 /* Ticket-specific styles */
 #tblTicket {
     width: 90%;
