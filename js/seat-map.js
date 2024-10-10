@@ -4,6 +4,8 @@ const seatMapContainer = document.getElementById("seat-map");
 let selectedSeats = [];
 const totalPriceElement = document.getElementById("total-price");
 const selectionCountElement = document.getElementById("selection-count");
+const reserveSeatsButton = document.getElementById("reserve-seats-button");
+reserveSeatsButton.setAttribute("disabled", "disabled")
 
 // Based on row no. and seat no. render static seat map grid inside seat-map element
 
@@ -24,7 +26,7 @@ function renderSeatMap(rowCount, seatCount, reservedSeats) {
 
             if (isReserved) {
                 seatElement.innerHTML = "🟥"
-                seatElement.classList.add("unavailable-seat")
+                seatElement.classList.add("seat-map-unavailable-seat")
             } else {
                 seatElement.innerHTML = "🟩";
                 seatElement.addEventListener('click', (event) => {
@@ -107,6 +109,13 @@ async function handleSeatSelection(event, rowNumber, seatNumber) {
     // update counters i DOM:
     totalPriceElement.innerHTML = getTotalPrice() + ",00 kr";
     selectionCountElement.innerHTML = selectedSeats.length;
+
+
+    if (selectedSeats.length > 0) {
+        reserveSeatsButton.removeAttribute("disabled")
+    } else if (selectedSeats.length === 0) {
+        reserveSeatsButton.setAttribute("disabled", "disabled")
+    }
 }
 
 async function getSeatPrice(rowNumber, seatNumber) {
