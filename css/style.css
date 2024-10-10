@@ -40,9 +40,14 @@ button {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Button shadow */
 }
 
-button:hover {
+button:hover:not([disabled]) {
     transform: scale(1.05);
     box-shadow: 0 0 20px #ffcc00; /* Gold shine hover effect */
+}
+
+button:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
 }
 
 /* Table styles */
@@ -179,6 +184,43 @@ button:hover {
     width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px; /* Rounded corners for the image */
+}
+
+/* Seat map style */
+.seat-map-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.seat-map-container-child {
+    display: flex;
+    gap: 60px;
+}
+
+.seat-map-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.seat-map-screen {
+    border: 2px solid white;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.seat-map-row {
+    display: flex;
+    gap: 4px;
+}
+.seat-map-seat {
+    cursor: pointer;
+}
+.seat-map-unavailable-seat {
+    cursor: not-allowed;
 }
 
 /* Ticket-specific styles */

@@ -169,13 +169,12 @@ function navigateToSeatMap(event) {
 
     //Find screening objektet i scrennings arrayet
     //Søg efter en screening med det samme id, som det der er tilknyttet knappen
-    const selectedScreening = screenings.find(s => s.screeningID == screeningID)
+    const selectedScreening = screenings.find(s => s.screeningID === parseInt(screeningID));
 
     //Tjek om det er fundet
-    if (selectedScreening) {
-
+    if (selectedScreening.screeningID) {
         //Gem idet i en session storage, som key - value
-        sessionStorage.setItem("screeningID", selectedScreening.id);
+        sessionStorage.setItem("screeningID", selectedScreening.screeningID);
 
         //redirect til den næste html
         window.location = "./seatmap.html";

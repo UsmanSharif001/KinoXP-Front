@@ -1,9 +1,11 @@
 // Select seat map element
 
-//Her bliver screening id hentet ud fra screenings
-//const screeningID = sessionStorage.getItem("screeningID")
-
 const seatMapContainer = document.getElementById("seat-map");
+let selectedSeats = [];
+const totalPriceElement = document.getElementById("total-price");
+const selectionCountElement = document.getElementById("selection-count");
+const reserveSeatsButton = document.getElementById("reserve-seats-button");
+reserveSeatsButton.setAttribute("disabled", "disabled")
 
 // Based on row no. and seat no. render static seat map grid inside seat-map element
 
@@ -24,6 +26,7 @@ function renderSeatMap(rowCount, seatCount, reservedSeats) {
 
             if (isReserved) {
                 seatElement.innerHTML = "🟥"
+                seatElement.classList.add("seat-map-unavailable-seat")
             } else {
                 seatElement.innerHTML = "🟩";
                 seatElement.addEventListener('click', (event) => {
@@ -38,11 +41,16 @@ function renderSeatMap(rowCount, seatCount, reservedSeats) {
     }
 }
 
-const urlParams = new URLSearchParams(window.location.search);
+// const urlParams = new URLSearchParams(window.location.search);
+// const screeningID = urlParams.get('screeningID');
 
-const screeningID = urlParams.get('screeningID');
+//Her bliver screening id hentet ud fra screenings
+const screeningID = sessionStorage.getItem("screeningID");
 
-// Get screening:
+if (!screeningID) {
+    throw new Error("Screening ID is missing in session storage.");
+}
+
 const urlScreening = `http://localhost:8080/selectedscreening/screeningID=${screeningID}`;
 
 let cinemaID = null;
@@ -82,9 +90,32 @@ fetchData();
 
 // funktion til at vælge sæder
 
-function handleSeatSelection(event, rowNumber, seatNumber) {
-    event.target.innerHTML = "🟦";
-    getSeatPrice(rowNumber, seatNumber)
+async function handleSeatSelection(event, rowNumber, seatNumber) {
+    const isAlreadySelected = selectedSeats.some(
+        (seat) => seat.rowNumber === rowNumber && seat.seatNumber === seatNumber
+    )
+
+    if (!isAlreadySelected) {
+        event.target.innerHTML = "🟦";
+        const seatPrice = await getSeatPrice(rowNumber, seatNumber)
+        const seat = {rowNumber, seatNumber, seatPrice}
+        selectedSeats.push(seat);
+    } else {
+        event.target.innerHTML = "🟩";
+        selectedSeats = selectedSeats.filter(
+            (seat) => !(seat.rowNumber === rowNumber && seat.seatNumber === seatNumber)
+        )
+    }
+    // update counters i DOM:
+    totalPriceElement.innerHTML = getTotalPrice() + ",00 kr";
+    selectionCountElement.innerHTML = selectedSeats.length;
+
+
+    if (selectedSeats.length > 0) {
+        reserveSeatsButton.removeAttribute("disabled")
+    } else if (selectedSeats.length === 0) {
+        reserveSeatsButton.setAttribute("disabled", "disabled")
+    }
 }
 
 async function getSeatPrice(rowNumber, seatNumber) {
@@ -96,5 +127,15 @@ async function getSeatPrice(rowNumber, seatNumber) {
         }
     ).find((seat) => seat.rowNr === rowNumber && seat.seatNr === seatNumber).price;
 
-    console.log(`Row: ${rowNumber} · Seat: ${seatNumber} · Price: ${seatPrice} kr.`)
+    return seatPrice;
+}
+
+// Funktion til at udregne total pris
+
+function getTotalPrice(){
+    let total = 0;
+    selectedSeats.forEach(
+        (seat) => total += seat.seatPrice
+    )
+    return total;
 }
