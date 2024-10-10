@@ -1,7 +1,7 @@
 // Select seat map element
 
 const seatMapContainer = document.getElementById("seat-map");
-const selectedSeats = [];
+let selectedSeats = [];
 const totalPriceElement = document.getElementById("total-price");
 const selectionCountElement = document.getElementById("selection-count");
 
@@ -88,11 +88,22 @@ fetchData();
 // funktion til at vælge sæder
 
 async function handleSeatSelection(event, rowNumber, seatNumber) {
-    event.target.innerHTML = "🟦";
-    const seatPrice = await getSeatPrice(rowNumber, seatNumber)
-    const seat = {rowNumber, seatNumber, seatPrice}
+    const isAlreadySelected = selectedSeats.some(
+        (seat) => seat.rowNumber === rowNumber && seat.seatNumber === seatNumber
+    )
 
-    selectedSeats.push(seat);
+    if (!isAlreadySelected) {
+        event.target.innerHTML = "🟦";
+        const seatPrice = await getSeatPrice(rowNumber, seatNumber)
+        const seat = {rowNumber, seatNumber, seatPrice}
+        selectedSeats.push(seat);
+    } else {
+        event.target.innerHTML = "🟩";
+        selectedSeats = selectedSeats.filter(
+            (seat) => !(seat.rowNumber === rowNumber && seat.seatNumber === seatNumber)
+        )
+    }
+    // update counters i DOM:
     totalPriceElement.innerHTML = getTotalPrice() + ",00 kr";
     selectionCountElement.innerHTML = selectedSeats.length;
 }
