@@ -46,4 +46,5 @@ function actionGetTickets() {
     fetchTickets()
 }
 
-pbGetTicket.addEventListener('click', actionGetTickets)
+document.addEventListener("DOMContentLoaded", actionGetTickets)
+//pbGetTicket.addEventListener('click', actionGetTickets)

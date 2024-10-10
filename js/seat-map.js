@@ -98,3 +98,5 @@ async function getSeatPrice(rowNumber, seatNumber) {
 
     console.log(`Row: ${rowNumber} · Seat: ${seatNumber} · Price: ${seatPrice} kr.`)
 }
+
+//Metode til at finde de valgte sæde ID'er til at sende med videre
