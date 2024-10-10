@@ -2,9 +2,7 @@ import {fetchAnyUrl, restDelete} from "./modulejson.js";
 
 console.log("er i moviestabel")
 
-const urlMovies = "http://localhost:8080/movies" //
-const tblMovies = document.getElementById("tblMovies") //
-const pbCreateMoviesTable = document.getElementById("pbGetMovies") //
+const urlMovies = "http://localhost:8080/movies"
 const moviesDiv = document.getElementById("movies")
 
 function insertRowInTable(movies) {
@@ -50,7 +48,7 @@ function actionGetMovies() {
 }
 
 function navigateToTicket(event) {
-    const row = event.target.closest('tr'); // Get the row that contains the clicked button
+    const row = event.target.closest('movie-card'); // Get the row that contains the clicked button
     const movieId = row.id;  // Get the movie ID from the row
     const selectedMovie = movies.find(m => m.movieID == movieId); // Find the movie in the movies array
 
@@ -61,5 +59,4 @@ function navigateToTicket(event) {
 }
 
 document.addEventListener("DOMContentLoaded", actionGetMovies)
-//pbCreateMoviesTable.addEventListener('click', actionGetMovies)
-//window.addEventListener('load', actionGetMovies)
+
