@@ -1,6 +1,8 @@
 // Select seat map element
 
 const seatMapContainer = document.getElementById("seat-map");
+const selectedSeats = [];
+const totalPriceElement = document.getElementById("total-price");
 
 // Based on row no. and seat no. render static seat map grid inside seat-map element
 
@@ -84,9 +86,14 @@ fetchData();
 
 // funktion til at vælge sæder
 
-function handleSeatSelection(event, rowNumber, seatNumber) {
+async function handleSeatSelection(event, rowNumber, seatNumber) {
     event.target.innerHTML = "🟦";
-    getSeatPrice(rowNumber, seatNumber)
+    const seatPrice = await getSeatPrice(rowNumber, seatNumber)
+
+    const seat = {rowNumber, seatNumber, seatPrice}
+
+    selectedSeats.push(seat);
+    totalPriceElement.innerHTML = getTotalPrice() + ",00 kr";
 }
 
 async function getSeatPrice(rowNumber, seatNumber) {
@@ -98,5 +105,15 @@ async function getSeatPrice(rowNumber, seatNumber) {
         }
     ).find((seat) => seat.rowNr === rowNumber && seat.seatNr === seatNumber).price;
 
-    console.log(`Row: ${rowNumber} · Seat: ${seatNumber} · Price: ${seatPrice} kr.`)
+    return seatPrice;
+}
+
+// Funktion til at udregne total pris
+
+function getTotalPrice(){
+    let total = 0;
+    selectedSeats.forEach(
+        (seat) => total += seat.seatPrice
+    )
+    return total;
 }
