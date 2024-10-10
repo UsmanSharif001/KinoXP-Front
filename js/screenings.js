@@ -34,7 +34,7 @@ function insertMovieDetails(movie){
 }
 
 function insertDayAndTime(screeningDate,screeningsForDays) {
-    console.log("Dato indsættes her: ", screeningDate)
+
 
     const dayContainer = document.createElement("div");
     dayContainer.classList.add('day-container'); // New container for day and times
@@ -50,9 +50,18 @@ function insertDayAndTime(screeningDate,screeningsForDays) {
 
     // Insert times for the current day
     screeningsForDays.forEach(screening => {
+        console.log("screening object:", screening);
+
         const sessionElement = document.createElement("button");
         sessionElement.classList.add('session');
         sessionElement.innerHTML = screening.timeOfDay;
+
+        console.log("Setting screening ID on button: ", screening.screeningID);
+
+        sessionElement.setAttribute('data-screening-id', screening.screeningID);
+
+        sessionElement.addEventListener('click',navigateToSeatMap)
+
         sessionContainer.appendChild(sessionElement); // Add session to session container
     });
 
@@ -117,6 +126,20 @@ async function fetchScreenings() {
 
 function actionGetScreenings() {
     fetchScreenings()
+}
+
+function navigateToSeatMap(event){
+    const button = event.target
+    const screeningID = button.getAttribute("data-screening-id")
+
+    console.log("Får jeg et id i navigate to seatmap?" + screeningID)
+
+    const selectedScreening = screenings.find(s => s.screeningID == screeningID)
+
+    if(selectedScreening){
+        sessionStorage.setItem("screeningID", selectedScreening.id);
+        window.location = "./seatmap.html";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", actionGetScreenings)
