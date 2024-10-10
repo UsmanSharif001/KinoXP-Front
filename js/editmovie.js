@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         updateMovie(movieId);
     });
+
+
+    document.getElementById("deleteMovieButton").addEventListener("click", function () {
+        if (confirm("Are you sure you want to delete this movie?")) {
+            deleteMovie(movieId);
+        }
+    });
 });
 
 // Fetch movie details
@@ -68,20 +75,18 @@ function updateMovie(movieId) {
         });
 }
 
-// Prøver at få delte til at virke - problemer med FK i de forsk. tabeller.
+// Delete movie
 function deleteMovie(movieId) {
     fetch(`http://localhost:8080/admin/movie/${movieId}`, {
         method: 'DELETE'
     })
         .then(response => {
             if (response.ok) {
-                return response.text();
+                alert("Movie deleted successfully!");
+                window.location.href = "adminshowmovie.html";
+            } else {
+                throw new Error('Network response was not ok.');
             }
-            throw new Error('Network response was not ok.');
-        })
-        .then(message => {
-            console.log(message);
-            fetchMovies(); // Refresh the movie list
         })
         .catch(error => {
             console.error("Error deleting movie:", error);
