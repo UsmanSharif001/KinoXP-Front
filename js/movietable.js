@@ -38,7 +38,6 @@ function insertRowInTable(movies) {
 
 }
 
-
 let movies = []
 
 async function fetchMovies() {
@@ -51,7 +50,7 @@ function actionGetMovies() {
 }
 
 function navigateToTicket(event) {
-    const row = event.target.closest(''); // Get the row that contains the clicked button
+    const row = event.target.closest('tr'); // Get the row that contains the clicked button
     const movieId = row.id;  // Get the movie ID from the row
     const selectedMovie = movies.find(m => m.movieID == movieId); // Find the movie in the movies array
 
