@@ -3,6 +3,7 @@
 const seatMapContainer = document.getElementById("seat-map");
 const selectedSeats = [];
 const totalPriceElement = document.getElementById("total-price");
+const selectionCountElement = document.getElementById("selection-count");
 
 // Based on row no. and seat no. render static seat map grid inside seat-map element
 
@@ -89,11 +90,11 @@ fetchData();
 async function handleSeatSelection(event, rowNumber, seatNumber) {
     event.target.innerHTML = "🟦";
     const seatPrice = await getSeatPrice(rowNumber, seatNumber)
-
     const seat = {rowNumber, seatNumber, seatPrice}
 
     selectedSeats.push(seat);
     totalPriceElement.innerHTML = getTotalPrice() + ",00 kr";
+    selectionCountElement.innerHTML = selectedSeats.length;
 }
 
 async function getSeatPrice(rowNumber, seatNumber) {
