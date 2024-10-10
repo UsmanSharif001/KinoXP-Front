@@ -24,6 +24,7 @@ function renderSeatMap(rowCount, seatCount, reservedSeats) {
 
             if (isReserved) {
                 seatElement.innerHTML = "🟥"
+                seatElement.classList.add("unavailable-seat")
             } else {
                 seatElement.innerHTML = "🟩";
                 seatElement.addEventListener('click', (event) => {

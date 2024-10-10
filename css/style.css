@@ -185,6 +185,12 @@ button:hover {
 .seat-map-row {
     display: flex;
 }
+.seat-map-seat {
+    cursor: pointer;
+}
+.unavailable-seat {
+    cursor: not-allowed;
+}
 
 /* Ticket-specific styles */
 #tblTicket {
