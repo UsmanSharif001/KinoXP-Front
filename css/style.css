@@ -1,31 +1,55 @@
-.div1 {
-    max-width: 80%;
-    margin: auto;
-    padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow to container */
-    background-color: #f9f9f9; /* Light background */
-    border-radius: 10px;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* Dark background for cinematic feel */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
 }
 
+.div1 {
+     width: 80%;
+     margin: auto;
+     background-color: #222; /* Darker container to contrast with the body */
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* A soft shadow for depth */
+     text-align: center;
+ }
+
 h1 {
-    font-family: 'Arial', sans-serif;
-    color: #333;
+    font-size: 3em;
+    color: #ffcc00; /* Golden color for a dramatic effect */
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.7); /* Adds depth to the title */
+    margin-bottom: 30px;
 }
 
 /* Table Styling */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 18px;
-    text-align: left;
-    border: 1px solid #ddd;
+     width: 100%;
+     border-collapse: collapse;
+     margin: 0 auto;
+     font-size: 1.1em;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+ }
+
+th {
+    background-color: #333;
+    color: #ffcc00; /* Golden color for headers */
+    padding: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.table th, .table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+/* Table rows */
+td {
+    background-color: #222;
+    padding: 10px 15px;
+    border-bottom: 1px solid #333;
 }
 
 /* Add alternating row colors */
@@ -33,33 +57,114 @@ h1 {
     background-color: #f3f3f3;
 }
 
-/* Hover effect for rows */
-.table tr:hover {
-    background-color: #f1f1f1;
-    transition: background-color 0.3s ease;
+/* Hover effect for table rows */
+td:hover {
+    background-color: #444;
+    color: #fff;
 }
 
-/* Styling the table header */
-.table th {
-    background-color: #4CAF50; /* Green header */
-    color: white;
+#newMovie {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ff9900;
+    font-style: italic;
+}
+
+/* Button style */
+button {
+    background-color: #ffcc00; /* Cinematic golden color */
+    color: #111; /* Dark text for contrast */
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3); /* Soft glow effect */
+}
+
+button:hover {
+    background-color: #ff9900;
+    box-shadow: 0 5px 25px rgba(255, 153, 0, 0.5);
+    transform: scale(1.05);
+}
+/* Add this to your CSS file */
+.cinema-button {
+    background-color: #ffcc00; /* Cinematic golden color */
+    color: #111; /* Dark text for contrast */
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Optional: Add a hover effect */
+.cinema-button:hover {
+    background-color: #ff9900;
+    transform: scale(1.05);
 }
 
 .days-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    gap: 20px;
 }
 
 .day-container {
-    border: 1px solid #ccc; /* Optional: Add a border around each day */
+    background-color: #222; /* Dark background for a cinematic feel */
+    border: 1px solid #444; /* Subtle border for contrast */
+    border-radius: 10px; /* Rounded corners */
     margin: 10px; /* Space between each day */
-    padding: 10px; /* Padding for each day container */
-    width: 150px; /* Width of each day container */
+    padding: 20px; /* Increased padding for breathing space */
+    width: 150px; /* Fixed width */
     text-align: center; /* Center text */
+    color: #fff; /* White text color */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Cinematic shadow */
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
+.day-container:hover {
+    transform: scale(1.05); /* Slight grow effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Deeper shadow on hover */
+}
+
+.session-container {
+    display: flex;
+    flex-direction: column; /* Stack sessions vertically */
+    align-items: center; /* Center align sessions */
+    gap: 10px;
+}
+
+.session {
+    background-color: #4CAF50; /* Green background for sessions */
+    color: white; /* White text color */
+    margin: 5px 0; /* Space between session times */
+    padding: 10px; /* Padding for each session time */
+    width: 100%; /* Full width of the parent container */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for sessions */
+.session:hover {
+    background-color: #388E3C;
+    transform: scale(1.02); /* Slight hover grow effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+}
+
+.schedule {
+    width: 80%;
+    background-color: #222; /* Slightly lighter than the body for contrast */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Cinematic shadow */
+}
 
 .seat-map-row {
     display: flex;

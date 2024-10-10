@@ -5,6 +5,7 @@ console.log("er i moviestabel")
 const urlMovies = "http://localhost:8080/movies" //
 const tblMovies = document.getElementById("tblMovies") //
 const pbCreateMoviesTable = document.getElementById("pbGetMovies") //
+const styles = window.getComputedStyle(pbCreateMoviesTable)
 
 function insertRowInTable(movies) { //
     let cellCount = 0
@@ -26,6 +27,7 @@ function insertRowInTable(movies) { //
     const pbBuyTicket = document.createElement("input");
     pbBuyTicket.type = "button";
     pbBuyTicket.setAttribute("value", "Køb billet");
+    pbBuyTicket.classList.add("cinema-button")
     pbBuyTicket.addEventListener('click', navigateToTicket)
     cell.appendChild(pbBuyTicket);
     console.log(row)
@@ -54,5 +56,5 @@ function navigateToTicket(event) {
     }
 }
 
-pbCreateMoviesTable.addEventListener('click', actionGetMovies())
-
+//pbCreateMoviesTable.addEventListener('click', actionGetMovies)
+window.addEventListener('load', actionGetMovies)
