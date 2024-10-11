@@ -1,8 +1,8 @@
-async function postObjectAsJson(url, object, httpVerbum) {
+async function postObjectAsJson(url, object) {
     const objectAsJsonString = JSON.stringify(object)
     console.log(objectAsJsonString)
     const fetchOptions = {
-        method: httpVerbum,
+        method: 'POST',
         headers: {
             "Content-Type": "application/json",
         },

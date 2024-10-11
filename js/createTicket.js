@@ -4,6 +4,7 @@ console.log("Jeg er i create ticket")
 
 const urlPostTicket = "http://localhost:8080/postticket"
 const urlFindSeats = `http://localhost:8080/seat`
+
 const screeningID = sessionStorage.getItem("screeningID")
 const cinemaID = sessionStorage.getItem("cinemaID")
 const selectedSeats = JSON.parse(sessionStorage.getItem("selectedSeats"))
