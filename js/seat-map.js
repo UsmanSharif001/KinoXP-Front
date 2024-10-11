@@ -139,3 +139,10 @@ function getTotalPrice(){
     )
     return total;
 }
+
+reserveSeatsButton.addEventListener('click', () => {
+    sessionStorage.setItem("selectedSeats", JSON.stringify(selectedSeats))
+    sessionStorage.setItem("screeningID", screeningID)
+
+    window.location = "./createReservation.html"
+})
