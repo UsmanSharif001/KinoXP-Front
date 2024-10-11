@@ -116,6 +116,7 @@ async function handleSeatSelection(event, rowNumber, seatNumber) {
     } else if (selectedSeats.length === 0) {
         reserveSeatsButton.setAttribute("disabled", "disabled")
     }
+    console.log(selectedSeats)
 }
 
 async function getSeatPrice(rowNumber, seatNumber) {
@@ -139,6 +140,7 @@ function getTotalPrice(){
     )
     return total;
 }
+
 
 reserveSeatsButton.addEventListener('click', () => {
     sessionStorage.setItem("selectedSeats", JSON.stringify(selectedSeats))
