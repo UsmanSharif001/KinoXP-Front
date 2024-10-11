@@ -61,3 +61,11 @@ function navigateToTicket(event) {
 
 document.addEventListener("DOMContentLoaded", actionGetMovies)
 
+const loginButton = document.getElementById("loginButton");
+loginButton.addEventListener('click', navigateToAdmin);
+
+
+function navigateToAdmin() {
+    window.location = "./adminshowmovie.html";
+}
+
