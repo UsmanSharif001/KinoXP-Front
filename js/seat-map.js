@@ -145,6 +145,7 @@ function getTotalPrice(){
 reserveSeatsButton.addEventListener('click', () => {
     sessionStorage.setItem("selectedSeats", JSON.stringify(selectedSeats))
     sessionStorage.setItem("screeningID", screeningID)
+    sessionStorage.setItem("cinemaID", cinemaID);
 
     window.location = "./createReservation.html"
 })
